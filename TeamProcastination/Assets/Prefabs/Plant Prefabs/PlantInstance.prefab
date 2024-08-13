@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantStages: []
-  timePerStage: 10
+  timePerStage: 3
+  plantType: 
