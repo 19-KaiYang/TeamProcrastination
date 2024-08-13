@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TimeBar : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class TimeBar : MonoBehaviour
         // Update the time bar scale
         float scaleRatio = currentTime / totalTime;
         timeBarTransform.localScale = new Vector3(initialScale.x * scaleRatio, initialScale.y, initialScale.z);
+
 
         
         if (currentTime <= 0)
