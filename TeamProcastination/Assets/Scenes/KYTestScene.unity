@@ -396,6 +396,7 @@ MonoBehaviour:
   timeBarTransform: {fileID: 1087730469}
   totalTime: 10
   totalDays: 7
+  plantGrowthInterval: 3
   daysCounter: {fileID: 2746284}
 --- !u!114 &1398073542
 MonoBehaviour:
@@ -570,6 +571,60 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1995500756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1995500758}
+  - component: {fileID: 1995500757}
+  m_Layer: 0
+  m_Name: PlantManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1995500757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995500756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a428a2be727b1947a00ee3d70a9a46a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantPrefab: {fileID: 1618244977143324811, guid: 642d6dd76e29b804bab3ecf8428db165, type: 3}
+  plantStagesType1:
+  - {fileID: 958225103298582221, guid: e565f35ae45b4ae499ffe6f4f0472728, type: 3}
+  - {fileID: 6732975603614163819, guid: 9f26b880314488440a07621e3c071c14, type: 3}
+  - {fileID: 4657825868737539316, guid: 0ccb0c06c4719ad49aafa16024a4c7ab, type: 3}
+  - {fileID: 6507867989799423604, guid: 21df1d66eee937f4bb027179fe287722, type: 3}
+  plantStagesType2:
+  - {fileID: 3687779158176617716, guid: 0680db7e5e62e5f46b5d4a41f90e4b2f, type: 3}
+  - {fileID: 5187167969683645557, guid: bce1faa920d3b7f459af36cbdc93bdcf, type: 3}
+  - {fileID: 4646645586090888452, guid: 1ad8f584e98c40f4a83aa02c578b8264, type: 3}
+--- !u!4 &1995500758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995500756}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: -3.01, z: -0.009340002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2018890845
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +728,7 @@ GameObject:
   - component: {fileID: 2030017418}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -930,3 +985,4 @@ SceneRoots:
   - {fileID: 2030017417}
   - {fileID: 1398073545}
   - {fileID: 25638903}
+  - {fileID: 1995500758}

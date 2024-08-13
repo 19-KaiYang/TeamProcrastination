@@ -9,6 +9,8 @@ public class TimeBar : MonoBehaviour
     public Transform timeBarTransform;
     public float totalTime = 120f; // Total time for one day in seconds
     public int totalDays = 7;
+    public float plantGrowthInterval = 3f;
+
 
     private float currentTime;
     private int currentDay = 1;
@@ -18,6 +20,11 @@ public class TimeBar : MonoBehaviour
 
     // Singleton instance
     private static TimeBar instance;
+
+    public delegate void PlantGrowthHandler();
+    public event PlantGrowthHandler OnPlantGrowth;
+
+    private float plantGrowthTimer;
 
     void Awake()
     {
@@ -41,17 +48,26 @@ public class TimeBar : MonoBehaviour
         currentTime = totalTime; // Initialize the current time
         initialScale = timeBarTransform.localScale;
         UpdateDaysCounter(); // Update the counter at the start
+        plantGrowthTimer = plantGrowthInterval; // Initialize the plant growth timer
     }
 
     void Update()
     {
         // Decrease the current time
         currentTime -= Time.deltaTime;
+        plantGrowthTimer -= Time.deltaTime;
 
         // Update the time bar scale
         float scaleRatio = currentTime / totalTime;
         timeBarTransform.localScale = new Vector3(initialScale.x * scaleRatio, initialScale.y, initialScale.z);
         UpdateDaysCounter(); // Update the days counter every frame
+
+        // Check if it's time for plant growth
+        if (plantGrowthTimer <= 0)
+        {
+            OnPlantGrowth?.Invoke();
+            plantGrowthTimer = plantGrowthInterval; // Reset the plant growth timer
+        }
 
         if (currentTime <= 0)
         {
@@ -70,6 +86,10 @@ public class TimeBar : MonoBehaviour
         if(Input.GetKey(KeyCode.E))
         {
             SceneManager.LoadScene("SaveandLoadTest");
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            SceneManager.LoadScene("KYTestScene");
         }
     }
 
