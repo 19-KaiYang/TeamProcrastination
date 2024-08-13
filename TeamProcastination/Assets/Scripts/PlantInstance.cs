@@ -9,6 +9,7 @@ public class PlantInstance : MonoBehaviour
     private int currentStage = 0;
     private float currentTime = 0f;
     private GameObject currentPlant;
+    public bool isHarvestable = false; // Track if the plant is harvestable
 
     void Start()
     {
@@ -21,6 +22,11 @@ public class PlantInstance : MonoBehaviour
 
     void Update()
     {
+        if (isHarvestable)
+        {
+            return; // Do not update if the plant is harvestable
+        }
+
         // Update the elapsed time
         currentTime += Time.deltaTime;
 
@@ -42,6 +48,21 @@ public class PlantInstance : MonoBehaviour
                 // Instantiate the next plant stage
                 currentPlant = Instantiate(plantStages[currentStage], transform.position, transform.rotation, transform);
             }
+            else
+            {
+                isHarvestable = true; // Mark as harvestable if it reaches the last stage
+                gameObject.tag = "Harvestable"; // Set the tag to Harvestable
+                Debug.Log("Plant has reached harvestable stage.");
+            }
+        }
+    }
+
+    public void Harvest()
+    {
+        if (isHarvestable)
+        {
+            Debug.Log("Harvesting plant: " + name);
+            Destroy(gameObject); // Destroy the plant game object when harvested
         }
     }
 }
