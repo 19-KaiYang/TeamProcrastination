@@ -885,7 +885,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  harvestRange: 1
 --- !u!1 &2093908327
 GameObject:
   m_ObjectHideFlags: 0
