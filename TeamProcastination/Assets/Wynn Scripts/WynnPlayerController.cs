@@ -25,6 +25,7 @@ public class WynnPlayerController : MonoBehaviour
     public Camera mainCamera; // Reference to the main camera
     public Transform hand;
     public SpriteRenderer gun;
+    public GameObject Muzzleflash;
 
     //Dash
     private bool canDash = true;
@@ -87,6 +88,7 @@ public class WynnPlayerController : MonoBehaviour
         {
             GameObject spawnProjectile = Instantiate(projectile, barrelTip.transform.position, hand.transform.rotation);
             Rigidbody2D projectileRigidBody = spawnProjectile.GetComponent<Rigidbody2D>();
+            flashParticle();
 
             if (projectileRigidBody != null)
             {
@@ -174,5 +176,12 @@ public class WynnPlayerController : MonoBehaviour
     private void Die()
     {
 
+    }
+
+    private void flashParticle()
+    {
+        var flashParticle = Instantiate(Muzzleflash, barrelTip.transform.position, Quaternion.identity);
+        var particleMainModule = flashParticle.GetComponent<ParticleSystem>().main;
+        particleMainModule.stopAction = ParticleSystemStopAction.Destroy;
     }
 }

@@ -11,6 +11,7 @@ public class WynnMovementController : MonoBehaviour
     void Awake()
     {
         rb.velocity = Vector2.zero;
+        rb.drag = 6f;
     }
 
     private void Update()
@@ -20,7 +21,18 @@ public class WynnMovementController : MonoBehaviour
 
     public void Move(float dirH, float dirV, float walkSpeed)
     {
-        Vector2 targetPosition = rb.position + new Vector2(dirH * walkSpeed, dirV * walkSpeed) * Time.fixedDeltaTime;
-        rb.MovePosition(targetPosition);
+        // Create a direction vector based on horizontal and vertical inputs
+        Vector2 movementDirection = new Vector2(dirH, dirV).normalized;
+
+        // Apply force to the Rigidbody2D in the calculated direction
+        rb.AddForce(movementDirection * walkSpeed);
+    }
+
+    public void KnockBack(Vector2 facingdir, float knockback)
+    {
+        if (rb != null)
+        {
+            rb.AddForce(facingdir * knockback, ForceMode2D.Impulse);
+        }
     }
 }

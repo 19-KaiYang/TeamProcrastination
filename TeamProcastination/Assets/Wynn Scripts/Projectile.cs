@@ -6,10 +6,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private Rigidbody2D rigidBody;
-    [SerializeField]
-    private float explosionRadius = 1.0f;
-    [SerializeField]
-    float explosionForce = 10.0f;
+    [SerializeField] private float explosionForce = 10.0f;
 
     void Start()
     {
@@ -27,17 +24,12 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius: explosionRadius);
+            Vector2 bulletDirection = transform.right; // Right represents the forward direction for 2D
+            Rigidbody2D projectileRigidBody = rigidBody.GetComponent<Rigidbody2D>();
 
-            foreach (Collider2D collider in colliders)
+            if (projectileRigidBody != null)
             {
-                Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
-
-                if (rb != null)
-                {
-                    Vector2 direction = (collider.transform.position - transform.position).normalized;
-                    rb.AddForce(direction * explosionForce, ForceMode2D.Impulse);
-                }
+                projectileRigidBody.AddForce(bulletDirection * explosionForce, ForceMode2D.Impulse);
             }
 
             Destroy(gameObject);
