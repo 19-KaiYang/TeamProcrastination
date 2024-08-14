@@ -450,6 +450,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   hand: {fileID: 5823305201234215969}
   gun: {fileID: 2124277146631527631}
+  Muzzleflash: {fileID: 0}
   dashingPower: 3
   dashingTime: 0.2
   dashingCooldown: 1

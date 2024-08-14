@@ -8,9 +8,6 @@ using UnityEngine.UI;
 
 public class WynnPlayerController : MonoBehaviour
 {
-    public Image healthBar;
-    public static float healthAmount;
-
     [SerializeField] private float walkSpeed = 5f;
 
     private WynnMovementController movementController;
@@ -45,7 +42,6 @@ public class WynnPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        healthAmount = 100;
         movementController = GetComponent<WynnMovementController>();
     }
 
@@ -88,7 +84,7 @@ public class WynnPlayerController : MonoBehaviour
         {
             GameObject spawnProjectile = Instantiate(projectile, barrelTip.transform.position, hand.transform.rotation);
             Rigidbody2D projectileRigidBody = spawnProjectile.GetComponent<Rigidbody2D>();
-            flashParticle();
+            FlashParticle();
 
             if (projectileRigidBody != null)
             {
@@ -162,23 +158,7 @@ public class WynnPlayerController : MonoBehaviour
         canDash = true;
     }
 
-    public void TakeDamage(int damage)
-    {
-        healthAmount -= damage;
-        healthBar.fillAmount = healthAmount / 100;
-
-        if (healthAmount <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-
-    }
-
-    private void flashParticle()
+    private void FlashParticle()
     {
         var flashParticle = Instantiate(Muzzleflash, barrelTip.transform.position, Quaternion.identity);
         var particleMainModule = flashParticle.GetComponent<ParticleSystem>().main;
